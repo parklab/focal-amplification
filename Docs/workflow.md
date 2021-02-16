@@ -1,8 +1,24 @@
-# About the page
+## About the page
 
-# Contributors
+## Contributors
 
-Jake Lee ()
-Lucy Jung ()
+**Jake Lee**
+- <https://github.com/jakelee0711>
 
-# Association amplificaiton boundaries (early events) with 3D chromatin interaction data
+**Lucy Jung**
+- <https://github.com/YLucyJung>
+
+## Table of contents
+
+- [Detection of focal amplifications](#Detection of focal amplifications)
+- [SVs involving the boundaries of focal amplifications](#SVs involving the boundaries of focal amplifications)
+- [Association with epigenomics data](#Association with epigenomics data)
+- [Association with 3D chromatin interaction data](#Association with 3D chromatin interaction data)
+
+## Detection of focal amplifications
+
+## SVs involving the boundaries of focal amplifications
+
+## Association with epigenomics data
+
+## Association with 3D chromatin interaction data
