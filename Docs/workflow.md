@@ -21,10 +21,16 @@ We describe step by step analysis procedures for the manuscript about the focal 
 ## SVs involving the boundaries of focal amplifications
 
 ## Association with epigenomics data
-To determine which epigenomic features were most associated with the initial SV events, we integrated the SVs at focal amplification boundaries in breast cancer samples with various chromatin features. XX function takes the coordinates of bindings for each factor and boundary positions in 10 kb bins as inputs and computed the enrichment p-values of the factor by Fisher's exact test.
+To determine which epigenomic features were most associated with the initial SV events, we integrated the SVs at the amplicon boundaries in breast cancer samples with various chromatin features. This function takes the coordinates of bindings for each factor and boundary positions in 10 kb bins as inputs, computs the enrichment p-values of the factor by Fisher's exact test and displays the result.
 ```
-XX<-function(){
+association.with.chromatin.features<-function(file=file){
+...
 }
 ```
-
+This function compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
+```
+comparison.er.e2.control<-function(file=file){
+...
+}
+```
 ## Association with 3D chromatin interaction data
