@@ -38,4 +38,9 @@ To analyze the association between amplicon boundaries and chromatin proximity, 
 ```
 association.recurrence.3d.contact<-function(rec.file=rec.file,3d.file=3d.file){...}
 ```
+For the comparison of chromatin interactions between untreated- and E2-treated conditions, we first simplified translocation information connecting amplicon boundaries to an arm-level translocation network. This function takes the translocation information as an input and computed the arm-level network and visualizes.
+```
+translocation.network<-function(file=file){...}
+```
+
 
