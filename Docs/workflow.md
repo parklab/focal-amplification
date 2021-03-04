@@ -25,7 +25,7 @@ The following functions can be loaded by installing an `R package TRAMP` (**TR**
 
 To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs, computs the enrichment p-values of the factor by Fisher's exact test and displays the result.
 ```
-association.with.chromatin.features(feature.file=featureinfile,sv.file=sv.file)
+association.with.chromatin.features(feature.file=feature.file,sv.file=sv.file)
 ```
 This function compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 ```
