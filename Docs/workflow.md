@@ -21,9 +21,9 @@ We describe step by step analysis procedures for the manuscript about the focal 
 ## SVs involving the boundaries of focal amplifications
 
 ## Association with epigenomics data
-The following functions can be loaded by installing an `R package TRAMP` (**TR**anslocations involving oncogenic **AMP**lification) and are also in `association.with.epigenomics.data.R`. 
+The following functions can be loaded by installing an `R package TRAMP` (**TR**anslocations involving oncogenic **AMP**lification) and are also in `association.with.epigenomics.data.R` under `focal-amplification/R` folder. The relavant data files are found in under `focal-amplification/Data` folder.
 
-To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs, computs the enrichment p-values of the factor by Fisher's exact test and displays the result.
+To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs and computs the enrichment p-values of the factor by Fisher's exact test.
 ```
 association.with.chromatin.features(feature.file=feature.file,sv.file=sv.file)
 ```
