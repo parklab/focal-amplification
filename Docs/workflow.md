@@ -36,9 +36,9 @@ To see the association between the recurrence of amplicon boundaries and ERa int
 association.recurrence.e2.er.intensity(rec.file=rec.file,er.file=er.file)
 ```
 ## Association with 3D chromatin interaction data
-To analyze the association between amplicon boundaries and chromatin proximity, we obtained Hi-C data from T47D luminal breast cancer cell line which doesn't have major translocation major between the chromosomes of our interests such as between chromosomes 8, 11 and 17 and used contact frequencies normalized by balance-based method (KR normalization). This function takes amplicon boundareis and contact frequeinces in 2.5Mb as inputs and displays the association between them.
+To analyze the association between amplicon boundaries and chromatin proximity, we obtained Hi-C data from T47D luminal breast cancer cell line which doesn't have major translocation major between the chromosomes of our interests such as between chromosomes 8, 11 and 17 and used contact frequencies normalized by balance-based method (KR normalization). This function takes SVs from the amplicon boundareis and the location of the folder containing of contact frequeincy information in 2.5Mb as inputs and displays the association between them.
 ```
-association.recurrence.3d.contact.t47d(rec.file=rec.file,3d.file=3d.file)
+association.recurrence.3d.contact.t47d(sv.file=sv.file,3d.file.folder=3d.file.folder)
 ```
 For the comparison of chromatin interactions between untreated- and E2-treated conditions, we first simplified translocation information connecting amplicon boundaries to an arm-level translocation network. This function takes the translocation information as an input and computed the arm-level network and visualizes.
 ```
