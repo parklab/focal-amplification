@@ -59,3 +59,5 @@ association.recurrence.3d.contact.ctr.e2.mcf7(top.trans.file=top.trans.file,3d.f
 ```
 ## Data visualization
 In order to visualize the patterns of SVs in the boundaries of focal amplifications, we used `Pieclust_ampseg.R` script. This accepts the summarized output txt file from the `Def_ampseg.R` script (One example result available in `Data` folder; `BreastCancer278.Ampdf.v2.full.txt`). Overall frequency of different types of boundary SVs (4 different categories including **head-to-tail SVs, fold-back inversions, translocations, and other intrachromosomal SVs**) are calculated by tumor type and the result is subject to a hierarchical clustering. The result will be visualized in pie graphs sorted by chromosome and tumor type.
+
+To illustrate structural variations and their associated copy number information simultaneously, `SVsketch` toolkit was used (under development as an R package). Here we present an example script (`SVsketch_2-chrom_example.R`) of this toolkit to visualize complex genomic rearrangements between chromosomes 17 and 8 in patient DO1281.
