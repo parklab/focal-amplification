@@ -16,9 +16,7 @@ We describe step by step analysis procedures for the manuscript about the focal 
 - [Association with epigenomics data](#Association-with-epigenomics-data)
 - [Association with 3D chromatin interaction data](#Association-with-3D-chromatin-interaction-data)
 
-## Detection of focal amplifications
-
-## SVs involving the boundaries of focal amplifications
+## Defining focal amplifications and association of structural variations with amplicon boundaries
 
 ## Association with epigenomics data
 The following functions can be loaded by installing an `R package TRAMP` (**TR**anslocations involving oncogenic **AMP**lification) and are also in `association.with.epigenomics.data.R` under `focal-amplification/R` folder. The relavant data files are found in under `focal-amplification/Data` folder.
@@ -49,3 +47,4 @@ Then, the top frequently translocated chromosome pairs were determined. We obtai
 ```
 association.recurrence.3d.contact.ctr.e2.mcf7(top.trans.file=top.trans.file,3d.file=3d.file)
 ```
+## Data visualization
