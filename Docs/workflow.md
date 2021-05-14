@@ -29,12 +29,10 @@ The latter works for the focally amplified regions with amplified baseline. This
 After this, the identified amplicons were merged together if the two adjacent amplicons are 1) close enough (less than 3 Mb away to each other) AND 2) the copy number of the intervening segment is clearly amplified from the baseline (2X of baseline copy number or greater AND copy number of 4 or greater). Amplicons were also filtered out if they are only moderately amplified from the adjacent segments (copy number difference less then 3). This pattern was often observed in the chromosomal regions with frequent nested or overlapped tandem duplications. Last, considering the known mechanistic relationship between the focal amplifications and chromothripsis, we expanded the amplified region boundaries if the boundary is close enough (within 1 Mb) to the copy number junction where the copy number of the adjacent segment is at the baseline copy number of given chromosome arm or less. Then SVs are associated with the boundaries of amplicons based on their physical proximity.
 
 ## Association with epigenomics data
-The following functions can be loaded by installing an `R package TRAMP` (**TR**anslocations involving oncogenic **AMP**lification) and are also in `association.with.epigenomics.data.R` under `focal-amplification/R` folder. The relavant data files are found in under `focal-amplification/Data` folder.
+The following functions can be loaded by running `association.with.epigenomics.data.R` under `focal-amplification/R` folder. The relavant data files are found in under `focal-amplification/Data` folder. The nessary input files the functions are typically set as default.
 
-To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs and computs the enrichment p-values of the factor by Fisher's exact test.
-```
-association.with.chromatin.features(feature.file=feature.file,sv.file=sv.file)
-```
+To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function `association.with.chromatin.features()` takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs and computs the enrichment p-values of the factor by Fisher's exact test.
+
 This function compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 ```
 comparison.er.e2.control(file=file)
