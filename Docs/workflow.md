@@ -11,12 +11,12 @@ We describe step by step analysis procedures for the manuscript about the focal 
 
 ## Table of contents
 
-- [Detection of focal amplifications](#Detection-of-focal-amplifications)
-- [SVs involving the boundaries of focal amplifications](#SVs-involving-the-boundaries-of-focal-amplifications)
+- [Defining focal amplifications and association with structural variations](#Defining-focal-amplifications-and-association-with-structural-variations)
 - [Association with epigenomics data](#Association-with-epigenomics-data)
 - [Association with 3D chromatin interaction data](#Association-with-3D-chromatin-interaction-data)
+- [Data visualization](#Data-visualization)
 
-## Defining focal amplifications and association of structural variations with amplicon boundaries
+## Defining focal amplifications and association with structural variations
 
 ## Association with epigenomics data
 The following functions can be loaded by installing an `R package TRAMP` (**TR**anslocations involving oncogenic **AMP**lification) and are also in `association.with.epigenomics.data.R` under `focal-amplification/R` folder. The relavant data files are found in under `focal-amplification/Data` folder.
