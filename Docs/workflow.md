@@ -1,5 +1,5 @@
 ## About the page
-We describe step by step analysis procedures for the manuscript about the focal amplifications in cancer. 
+Here, we describe step by step analysis procedures that we used in the study of 780 breast cancer genomes. Related datasets are also available at the Park lab website, through a dedicated link: <http://compbio.med.harvard.edu/TBAmplification/> 
 
 ## Contributors
 
