@@ -8,10 +8,14 @@
 
 ## Table of contents
 
+- [01_Creating_metadata](#Creating-metadata)
+
 - [Defining focal amplifications and association with structural variations](#Defining-focal-amplifications-and-association-with-structural-variations)
 - [Association with epigenomics data](#Association-with-epigenomics-data)
 - [Association with 3D chromatin interaction data](#Association-with-3D-chromatin-interaction-data)
 - [Data visualization](#Data-visualization)
+
+## Creating metadata
 
 ## Defining focal amplifications and association with structural variations
 To identify focally amplified regions and to associate structural variations (SVs) to the boundaries of amplicons, we used `Def_ampseg.R` script (current version 1.0). This function works by tumor type and requires summary information of the tumors (`Summaryinfo.table.1.19.txt`), chromosomal coordinate information (`hg19_coord.txt`), absolute copy number estimates, and annotated SV information as the input (available in `Data` folder). The output includes three key information: 1) **CNV_amplified_regions** (a segmented copy number files with annotation of focally amplified segments), 2) **SV_amp_boundaries** (a BEDPE file with annotation of types of SVs and their association with amplicons), and 3) **SV_breakpoints_long** (a similar SV file sorted by breakpoint location).
