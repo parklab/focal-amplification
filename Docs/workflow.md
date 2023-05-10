@@ -9,6 +9,12 @@
 ## Table of contents
 
 - [01_Creating_metadata](#Creating-metadata)
+- [02_Identifying_focal_amplifications](#Identifying-focal-amplifications)
+- [03_Epigenomic_association](#Epigenomic-association)
+- [04_HTGTS](#HTGTS)
+- [05_Timing_analysis](#Timing-analysis)
+- [06_Transcriptome_analysis](#Transcriptome-analysis)
+- [07_Data_visualization](#Data-visualization)
 
 - [Defining focal amplifications and association with structural variations](#Defining-focal-amplifications-and-association-with-structural-variations)
 - [Association with epigenomics data](#Association-with-epigenomics-data)
@@ -17,6 +23,23 @@
 
 ## Creating metadata
 Here we share the scripts for creating the R dataframes summarizing the clinical and genomic information. The three output files (`List.patients_summary.final.txt`, `List.purple.final.txt`, and `List.hrd_status.final.txt`) are available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
+
+## Identifying focal amplifications
+
+
+## Epigenomic association
+
+
+## HTGTS
+
+
+## Timing analysis
+
+
+## Transcriptome analysis
+
+
+## Data visualization
 
 
 
