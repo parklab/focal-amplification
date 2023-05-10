@@ -16,7 +16,7 @@
 - [Data visualization](#Data-visualization)
 
 ## Creating metadata
-Here we share the scripts for creating the R dataframes summarizing the clinical and genomic information. The output files (, , and ) are available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
+Here we share the scripts for creating the R dataframes summarizing the clinical and genomic information. The output files (`List.patients_summary.final.txt`, `List.purple.final.txt`, and `List.hrd_status.final.txt`) are available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
 
 
 
