@@ -5,4 +5,4 @@ In this study, we investigated the mechanisms of focal oncogene amplifications b
 The somatic variants of 780 breast cancer cases are available through the [Park Lab Website](http://compbio.med.harvard.edu/TBAmplification/).
 
 Related publication:
-Lee JJ et al. ERɑ-associated translocations underlie oncogene amplifications in breast cancer. *Nature* **XXX**, XXX-XXX (2023).
+Lee JJ et al. ERɑ-associated translocations underlie oncogene amplifications in breast cancer. *Nature* **XXX**, XXX-XXX (2023). doi:/10.1038/s41586-023-06057-w
