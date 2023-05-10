@@ -24,16 +24,12 @@
 Here we share the scripts for creating the R dataframes summarizing the clinical and genomic information. The three output files (`List.patients_summary.final.txt`, `List.purple.final.txt`, and `List.hrd_status.final.txt`) are available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
 
 ## Identifying focal amplifications
-To identify focally amplified regions and to associate structural variations (SVs) to the boundaries of amplicons, we used `Def_ampseg.R` script (current version 1.0). This function works by tumor type and requires summary information of the tumors (`Summaryinfo.table.1.19.txt`), chromosomal coordinate information (`hg19_coord.txt`), absolute copy number estimates, and annotated SV information as the input (available in `Data` folder). The output includes three key information: 1) **CNV_amplified_regions** (a segmented copy number files with annotation of focally amplified segments), 2) **SV_amp_boundaries** (a BEDPE file with annotation of types of SVs and their association with amplicons), and 3) **SV_breakpoints_long** (a similar SV file sorted by breakpoint location).
+To identify focally amplified regions and to associate structural variations (SVs) to the boundaries of amplicons, we used `HMF_definition_amp_segment.R` script. This function requires the segmented allelic copy number and structural variation information produced by the HMF bioinformatic pipeline as the input as well as the dataframe summarizing the clinical information (the output from the previous section).
 
-`Def_ampseg.R` first identifies baseline copy number of each chromosome arm. The baseline copy number is the most common total copy number value of the given chromosome arm. Using this baseline copy number as a reference, focally amplified region is defined in each tumor using following criteria.
+`HMF_definition_amp_segment.R` first identifies baseline copy number of each chromosome arm. The baseline copy number is the most common total copy number value of the given chromosome arm. We defined an amplicon as a genomic segment for which th e absolute copy number was more than three times greater than the baseline copy number. 
 
-- **\>3X of baseline copy number AND copy number of 6 or greater**
-- **3X of baseline copy number or less but +6 copies or more from the baseline copy number**
 
-The latter works for the focally amplified regions with amplified baseline. This happens frequently in the regions with prevalent arm-level copy gains (e.g., chromosome 8q). 
-
-After this, the identified amplicons were merged together if the two adjacent amplicons are 1) close enough (less than 3 Mb away to each other) AND 2) the copy number of the intervening segment is clearly amplified from the baseline (2X of baseline copy number or greater AND copy number of 4 or greater). Amplicons were also filtered out if they are only moderately amplified from the adjacent segments (copy number difference less then 3). This pattern was often observed in the chromosomal regions with frequent nested or overlapped tandem duplications. Last, considering the known mechanistic relationship between the focal amplifications and chromothripsis, we expanded the amplified region boundaries if the boundary is close enough (within 1 Mb) to the copy number junction where the copy number of the adjacent segment is at the baseline copy number of given chromosome arm or less. Then SVs are associated with the boundaries of amplicons based on their physical proximity.
+Then SVs are associated with the boundaries of amplicons based on their physical proximity.
 
 
 ## Epigenomic association
