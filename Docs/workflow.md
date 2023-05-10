@@ -29,14 +29,13 @@ To identify focally amplified regions and to associate structural variations (SV
 The output files from the `HMF_definition_amp_segment.R` were further analyzed by the scripts available in `HMF_collecting_amp_segment_descriptive_analyses.R`. Through this step, the SVs at the amplicon boundaries were summarized and annotated. Then, the copy number of the adjacent segments were analyzed to select the amplicons bordered by the unamplified segments for downsteam analyses.
 
 ## Epigenomic association
-The following functions can be loaded by running **association.with.epigenomics.data.R** under **focal-amplification/R** folder. The relavant data files are found in under **focal-amplification/Data** folder. The nessary input files for the functions are typically set as default.
+The following functions can be loaded by running `association.with.epigenomics.data.R`. The relavant data files are found in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder. The nessary input files for the functions are typically set as default.
 
-To determine which epigenomic features were associated with the initial SV events of the amplicons in breast cancers, we integrated the SVs at the amplicon boundaries with various chromatin features. This function `association.with.chromatin.features` takes the coordinates of bindings for each factor and boundary positions in 100-kb bins as inputs and computs the enrichment p-values of the factor by Fisher's exact test.
+To determine which epigenomic features were associated with the early SV events initiating the focal amplifications, we modelled the location of the amplicon boundaries/SVs with various epigenomic features. The function `association.with.chromatin.features` takes the coordinates of each factor and boundary positions as inputs and computes the enrichment p-values by the Fisher's exact test. 
 
 The function `comparison.er.e2.control`compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 
-To see the association between the recurrence of amplicon boundaries and ERa intensity in E2-treated cells, we calculated the recurrence of patinets and accumulated ERa binding intensity of ERa in E2-treated MCF7 cells in 100-kb bins. This function `association.recurrence.e2.er.intensity` takes the information of the recurrence and ERa intensity and displays the increase of ERa binding intensity at the binns with a high recurrence.
-
+To study the association between the recurrence of amplicon boundaries and ERa intensity in E2-treated cells, we calculated the recurrence of patients harboring the amplification boundaries for each bin and the accumulated ERa binding intensity in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.intensity` takes the information of the recurrence and the ERa intensity and displays the increase of ERa binding intensity at the binns with a high recurrence.
 
 ## HTGTS
 
