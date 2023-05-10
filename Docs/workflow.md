@@ -26,11 +26,7 @@ Here we share the scripts for creating the R dataframes summarizing the clinical
 ## Identifying focal amplifications
 To identify focally amplified regions and to associate structural variations (SVs) to the boundaries of amplicons, we used `HMF_definition_amp_segment.R` script. This function requires the segmented allelic copy number and structural variation information produced by the HMF bioinformatic pipeline as the input as well as the dataframe summarizing the clinical information (the output from the previous section).
 
-`HMF_definition_amp_segment.R` first identifies baseline copy number of each chromosome arm. The baseline copy number is the most common total copy number value of the given chromosome arm. We defined an amplicon as a genomic segment for which th e absolute copy number was more than three times greater than the baseline copy number. 
-
-
-Then SVs are associated with the boundaries of amplicons based on their physical proximity.
-
+The output files from the `HMF_definition_amp_segment.R` were further analyzed by the scripts available in `HMF_collecting_amp_segment_descriptive_analyses.R`. Through this step, the SVs at the amplicon boundaries were summarized and annotated. Then, the copy number of the adjacent segments were analyzed to select the amplicons bordered by the unamplified segments for downsteam analyses.
 
 ## Epigenomic association
 The following functions can be loaded by running **association.with.epigenomics.data.R** under **focal-amplification/R** folder. The relavant data files are found in under **focal-amplification/Data** folder. The nessary input files for the functions are typically set as default.
