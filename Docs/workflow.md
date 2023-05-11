@@ -47,7 +47,9 @@ The raw data from the HTGTS experiments is available at [GEO GSE227369](https://
 The scripts used for downstream analyses of the HTGTS dataset are available in the `HTGTS_annotation_visualization.R`. The raw output from the GSEA analysis, `GSEA.report_for_na_pos_1650575918912.tsv`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a>. Relevant for Figure 3.
 
 ## Timing analysis
+To analyze the timing of copy-number gains in the breast cancer genomes, we used two different methods, relative and absolute timing of the segments as described in the manuscript. First, relative timing was analyzed based on the methods used in the PCAWG analysis (`MutationTimeR` package was used) using our custom code `TimeR_CNA_WGD.R`. Synchronicity of the copy-number gains were assessed using `TimeR_synchronicity_analysis.R`.
 
+For absolute timing, we determined the burden of pre-amplification mutation for each amplified genomic segment using `VEClonal_calculation_binomial.R`. Using the output of this analysis, we estimated the timing of major copy-number gains as well as the non-bridge arm gains from the select cases with TB amplification based on the scripts collected in `VEClonal_timing_analysis.R`.
 
 ## Transcriptome analysis
 
