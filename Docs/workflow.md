@@ -28,8 +28,10 @@ To identify focally amplified regions and to associate structural variations (SV
 
 The output files from the `HMF_definition_amp_segment.R` were further analyzed by the scripts available in `HMF_collecting_amp_segment_descriptive_analyses.R`. Through this step, the SVs at the amplicon boundaries were summarized and annotated. Then, the copy number of the adjacent segments were analyzed to select the amplicons bordered by the unamplified segments for downsteam analyses.
 
+Same analysis for the PCAWG dataset was performed using the `PCAWG_definition_amp_segment.R` and `PCAWG_collecting_amp_segment_descriptive_analyses`. Figure 5 was generated based on this analysis.
+
 ## Epigenomic association
-The following functions can be loaded by running `association.with.epigenomics.data.R`. The relavant data files are found in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder. The nessary input files for the functions are typically set as default.
+The following functions can be loaded by running `association.with.epigenomics.data.R`. The relavant data files are found in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder. The nessary input files for the functions are typically set as default. Figure 3 was generated based on this analysis.
 
 To determine which epigenomic features were associated with the early SV events initiating the focal amplifications, we modelled the location of the amplicon boundaries/SVs with various epigenomic features. The function `association.with.chromatin.features` takes the coordinates of each factor and boundary positions as inputs and computes the enrichment p-values by the Fisher's exact test. 
 
@@ -38,7 +40,7 @@ The function `comparison.er.e2.control`compares the distributions of ERa binding
 To study the association between the recurrence of amplicon boundaries and ERa intensity in E2-treated cells, we calculated the recurrence of patients harboring the amplification boundaries for each bin and the accumulated ERa binding intensity in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.intensity` takes the information of the recurrence and the ERa intensity and displays the increase of ERa binding intensity at the binns with a high recurrence.
 
 ## HTGTS
-
+The raw data from the HTGTS experiments is available at <ahref="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369">GSE227369</a>. 
 
 ## Timing analysis
 
