@@ -49,10 +49,12 @@ The scripts used for downstream analyses of the HTGTS dataset are available in t
 ## Timing analysis
 To analyze the timing of copy-number gains in the breast cancer genomes, we used two different methods, relative and absolute timing of the segments as described in the manuscript. First, relative timing was analyzed based on the methods used in the PCAWG analysis (`MutationTimeR` package was used) using our custom code `TimeR_CNA_WGD.R`. Synchronicity of the copy-number gains were assessed using `TimeR_synchronicity_analysis.R`.
 
-For absolute timing, we determined the burden of pre-amplification mutation for each amplified genomic segment using `VEClonal_calculation_binomial.R`. Using the output of this analysis, we estimated the timing of major copy-number gains as well as the non-bridge arm gains from the select cases with TB amplification based on the scripts collected in `VEClonal_timing_analysis.R`.
+For absolute timing, we determined the burden of pre-amplification mutation for each amplified genomic segment using `VEClonal_calculation_binomial.R`. Using the output of this analysis, we estimated the timing of major copy-number gains as well as the non-bridge arm gains from the select cases with TB amplification based on the scripts collected in `VEClonal_timing_analysis.R`. Figure 4 was generated based on this analysis.
 
 ## Transcriptome analysis
+We devised a score reflecting mRNA expression of the estrogen-responsive genes and applied this to the 263 breast cancer cases with available RNA sequencing datasets. The scripts used in this analysis are available in `ERalpha_transcriptome_activity.R`. Relevant for Figure 4.
 
+We also analyzed the expression of amplified genes and correlated with their knockout phenotype in the CRISPR screen data. Related scripts are available in `Amplified_genes_expression.R`.
 
 ## Data visualization
 In order to visualize the patterns of SVs in the boundaries of focal amplifications, we used `Pieclust_ampseg.R` script. This accepts the summarized output txt file from the `Def_ampseg.R` script (One example result available in `Data` folder; `BreastCancer278.Ampdf.v2.full.txt`). Overall frequency of different types of boundary SVs (4 different categories including **head-to-tail SVs, fold-back inversions, translocations, and other intrachromosomal SVs**) are calculated by tumor type and the result is subject to a hierarchical clustering. The result will be visualized in pie graphs sorted by chromosome and tumor type.
