@@ -59,7 +59,7 @@ We also analyzed the expression of amplified genes and correlated with their kno
 ## Data visualization
 To illustrate structural variations and their associated copy number information, We used `SVsketch_20chrom_HMF_clean.R`. This was used in Figures 1, 2, and 4.
 
-To visualize the genomic rearrangement landscape in 780 breast cancers, we used `Plot_SV_matrix.R` script. Figure 1 was based on this analysis.
+To visualize the genomic rearrangement landscape in 780 breast cancers, we used `Plot_SV_matrix.R` script. Relevant for Figure 1.
 
 To visualize the amplified regions, their boundaries, and the association with the HTGTS breakpoints, we used `Plot_amplicon_HTGTS.R` script.
 
