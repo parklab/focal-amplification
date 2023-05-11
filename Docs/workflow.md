@@ -18,9 +18,6 @@
 
 The computational scripts described here are available in the [R](https://github.com/parklab/focal-amplification/blob/main/R) folder.
 
-- [Association with 3D chromatin interaction data](#Association-with-3D-chromatin-interaction-data)
-
-
 ## Creating metadata
 Here we share the scripts for creating the R dataframes summarizing the clinical and genomic information. The three output files (`List.patients_summary.final.txt`, `List.purple.final.txt`, and `List.hrd_status.final.txt`) are available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
 
@@ -39,6 +36,10 @@ To determine which epigenomic features were associated with the early SV events 
 The function `comparison.er.e2.control`compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 
 To study the association between the recurrence of amplicon boundaries and ERa intensity in E2-treated cells, we calculated the recurrence of patients harboring the amplification boundaries for each bin and the accumulated ERa binding intensity in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.intensity` takes the information of the recurrence and the ERa intensity and displays the increase of ERa binding intensity at the binns with a high recurrence.
+
+To analyze the association between amplicon boundaries and chromatin proximity, we obtained Hi-C data from T47D luminal breast cancer cell line and used contact frequencies normalized by balance-based method (KR normalization). The function `association.recurrence.3d.contact.t47d` takes the SVs from the amplicon boundaries and the contact frequeincy information in 2.5 Mb bins as the input and displays the association between them.
+
+For the comparison of chromatin interactions between untreated- and E2-treated conditions in MCF7 cells, we first simplified translocation information connecting amplicon boundaries to an arm-level translocation network. The function `translocation.network` takes the translocation information as the input, computes the arm-level network, and visualizes it. This analysis shows the most frequently translocated chromosome pairs. We obtained the contact frequency information from a published, 3C-based high-throughput sequencing data in untreated- and E2-treated MCF-7 cells as described in the manuscript. The contact frequencies were combined for each chromosome arm-pair. The function `association.recurrence.3d.contact.ctr.e2.mcf7` takes the contact frequencies and most frequently tranlocated arm pairs, calculates the ratio of the arm-level contact frequencies in E2-treated cells with respect to untreated cells, and compares the differences in chromatin contact by the E2 treatment with chromosome arm-level frequencies of translocations. 
 
 ## HTGTS
 The raw data from the HTGTS experiments is available at [GEO GSE227369](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369). The raw data was primarily analyzed using the scripts in the `HTGTS_data_processing.R`. The main output file from this script, `HTGTS.lograt.average.allcells.twotarget.gene.v2.corrected.allinfo.txt`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
@@ -60,11 +61,4 @@ To illustrate structural variations and their associated copy number information
 
 
 
-## Association with 3D chromatin interaction data
-The following functions can be loaded by running **association.with.epigenomics.data.R** under **focal-amplification/R** folder. The relavant data files are found in under **focal-amplification/Data** folder. The nessary input files for the functions are typically set as default.
 
-To analyze the association between amplicon boundaries and chromatin proximity, we obtained Hi-C data from T47D luminal breast cancer cell line which doesn't have major translocation major between the chromosomes of our interests such as between chromosomes 8, 11 and 17 and used contact frequencies normalized by balance-based method (KR normalization). The function `association.recurrence.3d.contact.t47d` takes SVs from the amplicon boundareis and the location of the folder containing of contact frequeincy information in 2.5Mb as inputs and displays the association between them.
-
-For the comparison of chromatin interactions between untreated- and E2-treated conditions in MCF7 cells, we first simplified translocation information connecting amplicon boundaries to an arm-level translocation network. The function `translocation.network` takes the translocation information as an input and computed the arm-level network and visualizes.
-
-Then, the top frequently translocated chromosome pairs were determined. We obtained contact frequency information from a published, 3C-based high-throughput sequencing data in untreated- and E2-treated MCF-7 cells. The contact frequencies were combined for each chromosome arm-pair. The function `association.recurrence.3d.contact.ctr.e2.mcf7` takes the contact frequencies and top tranlocated arm-pairs, calculates the ratio of the arm-level contact frequencies in E2-treated cells with respect to untreated cells and compares the changes in chromatin contact with chromosome arm-level frequencies of translocations connecting the amplification boundaries. 
