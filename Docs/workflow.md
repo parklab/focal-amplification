@@ -57,11 +57,13 @@ We devised a score reflecting mRNA expression of the estrogen-responsive genes a
 We also analyzed the expression of amplified genes and correlated with their knockout phenotype in the CRISPR screen data. Related scripts are available in `Amplified_genes_expression.R`.
 
 ## Data visualization
-In order to visualize the patterns of SVs in the boundaries of focal amplifications, we used `Pieclust_ampseg.R` script. This accepts the summarized output txt file from the `Def_ampseg.R` script (One example result available in `Data` folder; `BreastCancer278.Ampdf.v2.full.txt`). Overall frequency of different types of boundary SVs (4 different categories including **head-to-tail SVs, fold-back inversions, translocations, and other intrachromosomal SVs**) are calculated by tumor type and the result is subject to a hierarchical clustering. The result will be visualized in pie graphs sorted by chromosome and tumor type.
+To illustrate structural variations and their associated copy number information, We used `SVsketch_20chrom_HMF_clean.R`. This was used in Figures 1, 2, and 4.
 
-To illustrate structural variations and their associated copy number information simultaneously, `SVsketch` toolkit was used (under development as an R package). Here we present an example script (`SVsketch_2-chrom_example.R`) of this toolkit to visualize complex genomic rearrangements between chromosomes 17 and 8 in patient DO1281.
+To visualize the genomic rearrangement landscape in 780 breast cancers, we used `Plot_SV_matrix.R` script. Figure 1 was based on this analysis.
 
+To visualize the amplified regions, their boundaries, and the association with the HTGTS breakpoints, we used `Plot_amplicon_HTGTS.R` script.
 
+We used `Oncoprint_clinical_signatures.R` script to illustrate the genomic alteration landscape (Extended Data Fig. 2d). The output files were integrated using the Adobe Illustrator.
 
 
 
