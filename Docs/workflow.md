@@ -40,7 +40,7 @@ The function `comparison.er.e2.control`compares the distributions of ERa binding
 To study the association between the recurrence of amplicon boundaries and ERa intensity in E2-treated cells, we calculated the recurrence of patients harboring the amplification boundaries for each bin and the accumulated ERa binding intensity in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.intensity` takes the information of the recurrence and the ERa intensity and displays the increase of ERa binding intensity at the binns with a high recurrence.
 
 ## HTGTS
-The raw data from the HTGTS experiments is available at <ahref="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369">GSE227369</a>. 
+The raw data from the HTGTS experiments is available at [GEO GSE227369](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369). 
 
 ## Timing analysis
 
