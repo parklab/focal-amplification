@@ -16,6 +16,7 @@
 - [06_Transcriptome_analysis](#Transcriptome-analysis)
 - [07_Data_visualization](#Data-visualization)
 
+The computational scripts described here are available in the [R](https://github.com/parklab/focal-amplification/blob/main/R) folder.
 
 - [Association with 3D chromatin interaction data](#Association-with-3D-chromatin-interaction-data)
 
