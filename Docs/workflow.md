@@ -43,7 +43,7 @@ To study the association between the recurrence of amplicon boundaries and ERa i
 ## HTGTS
 The raw data from the HTGTS experiments is available at [GEO GSE227369](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369). The raw data was primarily analyzed using the scripts in the `HTGTS_data_processing.R`. The main output file from this script, `HTGTS.lograt.average.allcells.twotarget.gene.v2.corrected.allinfo.txt`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
 
-The scripts used for downstream analyses of the HTGTS dataset are available in the `HTGTS_annotation_visualization.R`. The raw output from the GSEA analysis, `GSEA.report_for_na_pos_1650575918912.tsv`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
+The scripts used for downstream analyses of the HTGTS dataset are available in the `HTGTS_annotation_visualization.R`. The raw output from the GSEA analysis, `GSEA.report_for_na_pos_1650575918912.tsv`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a>. Relevant for Figure 3.
 
 ## Timing analysis
 
