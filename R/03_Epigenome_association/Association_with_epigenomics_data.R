@@ -1,5 +1,40 @@
 
-# codes blow in R ver 4.1.2
+# R ver 4.1.2
+
+association.with.chromatin.features.htgts<-function(file="Data/epigenomics.data.htgts.data.250kb.RData"){
+  library(lasso2)
+  load(file)
+  #tht: HTGTS data
+  #t: recurrence of amp boundaries in 250kb
+  #t2: recurrence of amp boundaries in 250kb for non-pericentric/centromere regions
+  ids=match(paste0(t2$V1,":",t2$V2),paste0(t$V1,":",t$V2)) # remaining bins index after filtering
+
+  #ratio in mcf7 
+  sum.e2=tht$mcf7.shank2.e2+tht$mcf7.rara.e2 #breakpoints in E2 treated MCF7
+  sum.ctrl=tht$mcf7.shank2.ctrl+tht$mcf7.rara.ctrl #breakpoints in contral MCF7
+  logr=log2(sum.e2/(sum.ctrl+1)+1) #log ratio
+
+  mcf=unlist(lapply(1:dim(t)[1],function(i){
+  id=which(t$V1[i]==paste0("chr",tht$chr) & t$V2[i]==tht$start);
+  if(length(id)>0){return(logr[id])}
+  if(length(id)==0){return(0)}
+  }))
+  # ratios in filtered regions
+
+  #d: number of binding of epigenomic marks in 250 kb
+  d=d[ids,] #filter out pericentric/cetromic regions
+  d$ratio=mcf[ids] #b.n: ratio of E2/control
+
+  id=which(rowSums(d[,2:12])>0)
+  d2=d[id,] #filter out bins with no epigenetic marks
+
+  lm.lasso<-l1ce(ratio ~ ER.E2 + CTCF + TOP2B+ DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d2, standardize=T, absolute.t=T, trace=T, bound=0.215)
+  #lasso regression. a penalized parameter was chosen to remove two least important factors
+
+  pval=summary(lm.lasso)$coefficients[-1,4]
+  pval
+  return(pval)
+}
 
 association.with.chromatin.features<-function(file="Data/epigenomics.data.boundary.number.250kb.RData"){
   library(lasso2)
@@ -12,7 +47,7 @@ association.with.chromatin.features<-function(file="Data/epigenomics.data.bounda
   d3=d2[id,]
    
   lm.lasso=l1ce(b.n ~ ER.E2 + CTCF + TOP2B + DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d3, standardize=T, absolute.t=T, bound=0.39, trace=T) 
-  #lasso regression. panalty parameters were chosen so that the least two important features were not selected.   
+  #lasso regression. panalty parameters were chosen so that two least important features were not selected.   
   
   pval=list();
   type="all";pval[[type]]=summary(lm.lasso)$coefficients[-1,4]
@@ -81,111 +116,4 @@ association.recurrence.e2.er.non.amp<-function(file="Data/sample.number.er.e2.bi
   cor.test(1:10,(unlist(b)/(unlist(a)+unlist(b)))[2:11])
   return(d)
 }
-
-association.recurrence.e2.er.intensity<-function(rec.file="Data/all.boundary.patient.recurrence.breast.100kb.txt",er.file="Data/epigenomics.data.breast.RData"){
-load(er.file);
-ta=read.table(file=rec.file,sep="\t",stringsAsFactor=F);
-t=e2.er.acc.peak.int.100kb;
-cols=c("#eff3ff","#bdd7e7","#6baed6","#3182bd","#08519c");
-boxplot(t$V4[ta$V4==0],t$V4[ta$V4>=1 & ta$V4<=2],t$V4[ta$V4>=3 & ta$V4<=4],t$V4[ta$V4>=5 & ta$V4<=6],t$V4[ta$V4>=7],outline=F,axes=F,ylab="Accumulated E2-responsive ERa binding intensity in 100kb bin",col=cols)
-axis(1,at=1:5,label=c("Recurrence=0","1-2","3-4","5-6",">=7"))
-mtext(1,at=1:5,text=c(paste0("(n=",sum(ta$V4==0),")"),paste0("(",sum(ta$V4>=1 & ta$V4<=2),")"),paste0("(",sum(ta$V4>=3 & ta$V4<=4),")"),paste0("(",sum(ta$V4>=5 & ta$V4<=6),")"),paste0("(",sum(ta$V4>=7),")")),line=2.2)
-axis(2)
-}  
-
-association.recurrence.3d.contact.t47d<-function(sv.file="Data/breast.cancer.278.boundary.sv.bedpe",3d.file.folder="Data/contact"){
- chrs=c(1:22,"X");
- library(gtools)
- pairs=combinations(23,2,chrs,repeats.allowed=F)
- files=paste0("Data/contact/",pairs[,1],"_",pairs[,2],"_oe_2.5mb.txt");
- all=unlist(lapply(files,function(file) {
-   t=read.table(file,sep="",stringsAsFactor=F)
-   t$V3}))
-
-t=read.table(file=sv.file,sep="",stringsAsFactor=F)
-bin=2.5e6;
-d=unlist(lapply(i:dim(t)[1],function(i){
-t.chr1=gsub("chr","",t$V1[i])
-t.p1=t$V2[i];
-t.chr2=gsub("chr","",t$V4[i])
-t.p2=t$V5[i];
-if(t.chr1!="X" & t.chr2!="X"){
-if(as.numeric(t.chr1)<as.numeric(t.chr2)){chr1=t.chr1;p1=t.p1;chr2=t.chr2;p2=t.p2}
-if(as.numeric(t.chr1)>as.numeric(t.chr2)){chr1=t.chr2;p1=t.p2;chr2=t.chr1;p2=t.p1}}
-if(t.chr2=="X"){chr1=t.chr1;p1=t.p1;chr2=t.chr2;p2=t.p2}
-if(t.chr1=="X"){chr1=t.chr2;p1=t.p2;chr2=t.chr1;p2=t.p1}
-chr1;p1;chr2;p2
-options(scipen=999)
-p1=floor(p1/bin)*bin;p1
-p2=floor(p2/bin)*bin;p2
-paste0(chr1,",",p1,",",chr2,",",p2)}))
-s=table(d)
-all.amp=unique(d)
-rec.amp=names(s[s>=2])
-
-  chr1=strsplit(a,",")[[1]][1];
-all.amp.contact=unlist(lapply(all.amp,function(a){
-  chr1=strsplit(a,",")[[1]][1];
-  p1=as.numeric(strsplit(a,",")[[1]][2]);
-  chr2=strsplit(a,",")[[1]][3];
-  p2=as.numeric(strsplit(a,",")[[1]][4]);
-  t=read.table(file=paste0("~/groups/chromoplexy/data/hic/contact/",chr1,"_",chr2,"_oe_",bin/  p2=as.numeric(strsplit(a,",")[[1]][4]);
-  t=read.table(file=paste0("~/groups/chromoplexy/data/hic/contact/",chr1,"_",chr2,"_oe_",bin/1e6,"mb_hg38.txt"),sep="",stringsAsFactor=F)
-  id=which(t$V1==p1 & t$V2==p2);
-  t$V3[id]
-}))
-
-names(rec.amp)=rec.amp
-rec.amp.contact=unlist(lapply(rec.amp,function(a){
-  chr1=strsplit(a,",")[[1]][1];
-  p1=as.numeric(strsplit(a,",")[[1]][2]);
-  chr2=strsplit(a,",")[[1]][3];
-  p2=as.numeric(strsplit(a,",")[[1]][4]);
-  t=read.table(file=paste0("~/groups/chromoplexy/data/hic/contact/",chr1,"_",chr2,"_oe_",bin/1e6,"mb_hg38.txt"),sep="",stringsAsFactor=F)
-  id=which(t$V1==p1 & t$V2==p2);
-  t$V3[id]
-}))
-wilcox.test(all,all.amp.contact)
-wilcox.test(all.amp.contact,rec.amp.contact) 
-  
-par(mar=c(6,5,4,5))
-ddf=data.frame(Contact=c(all,all.amp.contact,rec.amp.contact),Freq=c(rep("all",times=length(all)),rep("amp",times=length(all.amp.contact)),rep("rec.amp",times=length(rec.amp.contact))))
-cols1=c(rgb(0,0,0,0.3),rgb(0.0,0,0.6,0.3),rgb(0.4,0,0.6,0.3));
-cols2=c(rgb(0,0,0,0.0),rgb(0.0,0,0.6,0.1),rgb(0.4,0,0.6,0.5));
-boxplot(Contact ~ Freq, data = ddf, lwd = 1, ylab = 'Contact frequencies (Observed/Expected)',ylim=c(0,3),outline=F,col=cols1,axes=F)
-stripchart(Contact ~ Freq, vertical = TRUE, data = ddf, 
-    method = "jitter", add = TRUE, pch = 19, col = cols2,cex=1.5)
-axis(1,at=1:3,label=c("All pairs","Amp boundaries","Rec"),line=-0.5)
-axis(1,at=1:3,label=c(paste0("(n=",length(all),")"),paste0("(",length(all.amp.contact),")"),paste0("(",length(rec.amp.contact),")")),line=0.5,tick=F)
-mtext(3,at=c(1.5,2.5),text=c("***","*"))
-axis(2,las=2)  
-}
-  
-translocation.network<-function(file="Data/trans.frequencies.byarm.breast.cancer.278.txt"){
-t=read.table(file=file,sep="",header=T,stringsAsFactor=F)
-thr=3;
-id=which(t$amptracount>=thr)
-links=data.frame(from=t$arm1[id],to=t$arm2[id],weight=t$amptracount[id],type="chr.arm")
-library(igraph);
-chrs=as.character(nodes$id);
-names(chrs)=chrs;
-count=unlist(lapply(chrs,function(chr){
-  co=sum(t$amptracount[t$arm1==chr])+sum(t$amptracount[t$arm2==chr])
-  return(co)
-}))
-nodes2=data.frame(id=chrs[rev(order(count))],type="chr.arm")
-count2=rev(sort(count))
-library(RColorBrewer)
-thr=6
-cols1=unlist(lapply(count2,function(cnt){
-  n=round(cnt/10);
-  if(n>=thr){n=thr}
-  return(brewer.pal(n=thr,name="Blues")[n])
-  }))
-  net2 <- graph.data.frame(links, nodes2, directed=F)
-  x11();
-col2=rgb(0,0,0,0.3) #edge color
-V(net2)$color=cols1;
-E(net2)$color=col2;
-plot(net2,edge.width=E(net2)$weight, vertex.label.color="black",vertex.label.family="Helvetica",vertex.size=20,vertex.frame.color="black");
-}  
+ 
