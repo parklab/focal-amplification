@@ -58,7 +58,7 @@ id4=which(t$chr=="chr17" & t$end==39e6)
 ids=c(id1,id2,id3,id4);
 points(t[ids,5],rep(0,times=4),col=rgb(1, 0, 0,0.5),cex=1,pch=16)
 points(t[ids,4],rep(0,times=4),col=rgb(0, 0, 1,0.5),cex=1,pch=16)
-text(c(t[ids,5]),c(0.15,0.1,0.1,0.1),labels=c("SHANK2","TENM4","ZNF703","RARA"))
+text(c(t[ids,5]),c(0.15,0.1,0.1,0.1),labels=c("SHANK2","TENM4","KCNU1","RARA"))
 }  
 
 association.recurrence.e2.er.intensity<-function(rec.file="Data/all.boundary.patient.recurrence.breast.100kb.txt",er.file="Data/epigenomics.data.breast.RData"){
