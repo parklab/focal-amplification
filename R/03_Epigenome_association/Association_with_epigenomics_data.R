@@ -3,7 +3,7 @@
 
 association.with.chromatin.features<-function(file="Data/epigenomics.data.boundary.number.250kb.RData"){
   library(lasso2)
-  load(file) #load the file contains values of number of amplication boundaries and number of binding for each factor in 250kb bins. Values in centromere and peri-centric regions were filtered out.
+  load(file) #load the file contains values of number of amplifon boundaries and number of binding for each factor in 250kb bins. Values in centromere and peri-centric regions were filtered out.
   
   #all
   #this is for all amplication boudaries  
@@ -41,25 +41,46 @@ association.with.chromatin.features<-function(file="Data/epigenomics.data.bounda
 }
 
 comparison.er.e2.control<-function(file="Data/epigenomics.data.breast.RData"){
-load(file)
-t=er.intensity.1mb
-d1=density(t[,4],na.rm=T)
-plot(d1$x,d1$y,type="l",xlim=c(0,14),lwd=2,col=rgb(0, 0, 1,0.5),xlab="ER binding intensity",ylab="Density",main="Control vs E2",axes=F)
-axis(1)
-axis(2,las=2)
-d2=density(t[,5],na.rm=T)
-lines(d2$x,d2$y,type="l",col=rgb(1, 0, 0,0.5),lwd=2)
-polygon(c(d1$x, rev(d1$x)), c(d1$y ,rev(rep(0,times=length(d1$y)))), col = rgb(0, 0, 1,0.3) )
-polygon(c(d2$x, rev(d2$x)), c(d2$y ,rev(rep(0,times=length(d2$y)))), col = rgb(1, 0, 0,0.3) )
-id1=which(t$chr=="chr11" & t$end==71e6)
-id2=which(t$chr=="chr11" & t$end==79e6)
-id3=which(t$chr=="chr8" & t$end==38e6)
-id4=which(t$chr=="chr17" & t$end==39e6)
-ids=c(id1,id2,id3,id4);
-points(t[ids,5],rep(0,times=4),col=rgb(1, 0, 0,0.5),cex=1,pch=16)
-points(t[ids,4],rep(0,times=4),col=rgb(0, 0, 1,0.5),cex=1,pch=16)
-text(c(t[ids,5]),c(0.15,0.1,0.1,0.1),labels=c("SHANK2","TENM4","KCNU1","RARA"))
+  load(file)
+  t=er.intensity.1mb
+  d1=density(t[,4],na.rm=T)
+  plot(d1$x,d1$y,type="l",xlim=c(0,14),lwd=2,col=rgb(0, 0, 1,0.5),xlab="ER binding intensity",ylab="Density",main="Control vs E2",axes=F)
+  axis(1)
+  axis(2,las=2)
+  d2=density(t[,5],na.rm=T)
+  lines(d2$x,d2$y,type="l",col=rgb(1, 0, 0,0.5),lwd=2)
+  polygon(c(d1$x, rev(d1$x)), c(d1$y ,rev(rep(0,times=length(d1$y)))), col = rgb(0, 0, 1,0.3) )
+  polygon(c(d2$x, rev(d2$x)), c(d2$y ,rev(rep(0,times=length(d2$y)))), col = rgb(1, 0, 0,0.3) )
+  id1=which(t$chr=="chr11" & t$end==71e6)
+  id2=which(t$chr=="chr11" & t$end==79e6)
+  id3=which(t$chr=="chr8" & t$end==38e6)
+  id4=which(t$chr=="chr17" & t$end==39e6)
+  ids=c(id1,id2,id3,id4);
+  points(t[ids,5],rep(0,times=4),col=rgb(1, 0, 0,0.5),cex=1,pch=16)
+  points(t[ids,4],rep(0,times=4),col=rgb(0, 0, 1,0.5),cex=1,pch=16)
+  text(c(t[ids,5]),c(0.15,0.1,0.1,0.1),labels=c("SHANK2","TENM4","KCNU1","RARA"))
 }  
+
+association.recurrence.e2.er.non.amp<-function(file="Data/sample.number.er.e2.binding.non.amp.100kb.RData"){
+  load(file)
+  #load SV breakpoints (number of samples) and number of ERa binding in E2 treated cells and info of ampin 100kb bins
+
+  id=which(t1$"amp"==0) #unamplified regions
+  t2=t1[id,] 
+
+  n=t2$num_ERa_E2 #number of ERa binding
+
+  a=list();b=list();
+  for(i in 0:10){
+  a[[i+1]]=sum(n==0 & t2$num_sample==i) #bins without ERa binding
+  b[[i+1]]=sum(n>=1 & t2$num_sample==i) #bins with ERa binding
+  }
+  d=data.frame(recurrence=0:10,fraction=unlist(b)/(unlist(a)+unlist(b)))
+  d #recurrence vs percentage of bins with ERa binding
+  cor(1:10,(unlist(b)/(unlist(a)+unlist(b)))[2:11])
+  cor.test(1:10,(unlist(b)/(unlist(a)+unlist(b)))[2:11])
+  return(d)
+}
 
 association.recurrence.e2.er.intensity<-function(rec.file="Data/all.boundary.patient.recurrence.breast.100kb.txt",er.file="Data/epigenomics.data.breast.RData"){
 load(er.file);
