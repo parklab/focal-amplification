@@ -25,7 +25,7 @@ association.with.chromatin.features.htgts<-function(file="Data/epigenomics.data.
   d=d[ids,] #filter out pericentric/cetromic regions
   d$ratio=mcf[ids] #b.n: ratio of E2/control
 
-  id=which(rowSums(d[,2:12])>0)
+  id=which(rowSums(d[,2:11])>0)
   d2=d[id,] #filter out bins with no epigenetic marks
 
   lm.lasso<-l1ce(ratio ~ ER.E2 + CTCF + TOP2B+ DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d2, standardize=T, absolute.t=T, trace=T, bound=0.215)
