@@ -98,7 +98,7 @@ comparison.er.e2.control<-function(file="Data/epigenomics.data.breast.RData"){
 
 association.recurrence.e2.er.non.amp<-function(file="Data/sample.number.er.e2.binding.non.amp.100kb.RData"){
   load(file)
-  #load SV breakpoints (number of samples) and number of ERa binding in E2 treated cells and info of ampin 100kb bins
+  #load SV breakpoints (number of samples), number of ERa binding in E2 treated cells and info of amp in 100kb bins
 
   id=which(t1$"amp"==0) #unamplified regions
   t2=t1[id,] 
