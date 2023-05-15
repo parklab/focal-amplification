@@ -35,7 +35,7 @@ To determine which epigenomic features were associated with the early SV events 
 
 The function `comparison.er.e2.control`compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 
-To study the association between the recurrence of SV breakpoints and ERa binding in E2-treated cells, we calculated the recurrence of patients harboring SV breakpoints for each bin and the ERa binding in the E2-treated MCF7 cells. The function `[association.recurrence.e2.er.intensity]` takes the information of the recurrence and the ERa binding and displays the increase of ERa binding at the binns with a high recurrence.
+To study the association between the recurrence of SV breakpoints and ERa binding in E2-treated cells in unamplified regions, we calculated the recurrence of patients harboring SV breakpoints for each bin and the ERa binding in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.non.amp` takes the information of the recurrencee, the ERa binding, and displays the increase of the percentage of regions with ERa binding with higher recurrences.
 
 To analyze the association between break points by ER treatment by HTGTS experiments (see below) and epigenomic features, 
 we modeled the location of the breakpoints with various epigenomic features. The function `association.with.chromatin.features.htgts` takes the coordinates of each factor and HTGTS breakpoint positions as inputs and computes the enrichment p-values by the Lasso regression. 
