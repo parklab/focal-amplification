@@ -1,25 +1,43 @@
-cal.enrich.sig<-function(ti=factor.bounding.info,to=boundary.sv.info){
-ti$V4=round(rowMeans(ti[,2:3]))
-t=to[to$V4>0,]
-n=unlist(lapply(1:dim(t)[1],function(i){
-id=which(ti$V1==t$V1[i] & ti$V4>=t$V2[i] & ti$V4<=t$V3[i]);
-length(id)}))  
-tnb=to[to$V4==0,]
-nnb=unlist(lapply(1:dim(tnb)[1],function(i){
-id=which(ti$V1==tnb$V1[i] & ti$V4>=tnb$V2[i] & ti$V4<=tnb$V3[i]);
-length(id)}))  
-pval=fisher.test(matrix(c(sum(n>0),dim(t)[1],sum(nnb>0),dim(tnb)[1]),nrow=2),alternative="greater")$p.value;
-return(pval)}
 
-association.with.chromatin.features<-function(feature.file="Data/epigenomics.data.breast.RData",sv.file="Data/all.boundary.sv.breakpoint.breast.100kb.txt"){
-load(feature.file);
-to=read.table(file=sv.file,sep="\t",stringsAsFactor=F)
-factors=names(factor.binding);
-names(factors)=factors;
-pval=unlist(lapply(factors,function(factor){
-  ti=factor.binding[[factor]];
-  cal.enrich.sig(ti=ti,to=to)}))
-return(pval)
+# codes blow in R ver 4.1.2
+
+association.with.chromatin.features<-function(file="Data/epigenomics.data.boundary.number.250kb.RData"){
+  library(lasso2)
+  load(file) #load the file contains values of number of amplication boundaries and number of binding for each factor in 250kb bins. Values in centromere and peri-centric regions were filtered out.
+  
+  #all
+  #this is for all amplication boudaries  
+  d2=d2.all
+  id=which(rowSums(d2[,2:12])>0) #bins where there was no binding from any of the epigenetic features were further filtered out.
+  d3=d2[id,]
+   
+  lm.lasso=l1ce(b.n ~ ER.E2 + CTCF + TOP2B + DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d3, standardize=T, absolute.t=T, bound=0.39, trace=T) 
+  #lasso regression. panalty parameters were chosen so that the least two important features were not selected.   
+  
+  pval=list();
+  type="all";pval[[type]]=summary(lm.lasso)$coefficients[-1,4]
+  
+  #ER positive
+  #this is for amplicon boundaries from ER positive samples  
+  d2=d2.er.pos
+     
+  id=which(rowSums(d2[,2:12])>0)
+  length(id)
+  d3=d2[id,]
+  lm.lasso<-l1ce(b.n ~ ER.E2 + CTCF + TOP2B + DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d3, standardize=T, absolute.t=T, trace=T, bound=0.29)
+  type="er.pos";pval[[type]]=summary(lm.lasso)$coefficients[-1,4]
+  pval
+  
+#ER negative
+#this is for amplicon boundaries from ER negative samples  
+  d2=d2.er.neg  
+  id=which(rowSums(d2[,2:12])>0)
+  length(id)
+  d3=d2[id,]
+  lm.lasso<-l1ce(b.n ~ ER.E2 + CTCF + TOP2B+ DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d3, standardize=T, absolute.t=T, trace=T, bound=0.08)
+  type="er.neg";pval[[type]]=summary(lm.lasso)$coefficients[-1,4]
+  pval 
+  return(pval)
 }
 
 comparison.er.e2.control<-function(file="Data/epigenomics.data.breast.RData"){
