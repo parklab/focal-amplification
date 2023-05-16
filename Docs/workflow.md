@@ -31,14 +31,14 @@ Same analysis for the PCAWG dataset was performed using the `PCAWG_definition_am
 ## Epigenomic association
 The following functions can be loaded by running `association.with.epigenomics.data.R`. The relavant data files are found in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder. The nessary input files for the functions are typically set as default. Figure 3 was generated based on this analysis.
 
-To determine which epigenomic features were associated with the early SV events initiating the focal amplifications, we modelled the location of the amplicon boundaries/SVs with various epigenomic features. The function `association.with.chromatin.features` takes the coordinates of each factor and boundary positions as inputs and computes the enrichment p-values by the Lasso regression. 
+To determine which epigenomic features were associated with the early SV events initiating the focal amplifications, we modeled the location of the amplicon boundaries/SVs with various epigenomic features. The function `association.with.chromatin.features` takes the coordinates of factors, boundary positions, and numbers of bindings and boundaries as inputs and computes the enrichment p-values by the Lasso regression. 
 
 The function `comparison.er.e2.control`compares the distributions of ERa binding intensity in E2-treated MCF7 cells and non-treated MCF7 cells and annotates major amplicon boundary hotspots.  
 
 To study the association between the recurrence of SV breakpoints and ERa binding in E2-treated cells in unamplified regions, we calculated the recurrence of patients harboring SV breakpoints for each bin and the ERa binding in the E2-treated MCF7 cells. The function `association.recurrence.e2.er.non.amp` takes the information of the recurrencee, the ERa binding, and displays the increase of the percentage of regions with ERa binding with higher recurrences.
 
-To analyze the association between break points by ER treatment by HTGTS experiments (see below) and epigenomic features, 
-we modeled the location of the breakpoints with various epigenomic features. The function `association.with.chromatin.features.htgts` takes the coordinates of each factor and HTGTS breakpoint positions as inputs and computes the enrichment p-values by the Lasso regression. 
+To analyze the association between breakpoints by ER treatmented HTGTS experiments (see below) and epigenomic features, 
+we modeled the location of the breakpoints with various epigenomic features. The function `association.with.chromatin.features.htgts` takes the coordinates of factors, breakpoints, and numbers of bindings and breakpoints and computes the enrichment p-values by the Lasso regression. 
 
 ## HTGTS
 The raw data from the HTGTS experiments is available at [GEO GSE227369](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227369). The raw data was primarily analyzed using the scripts in the `HTGTS_data_processing.R`. The main output file from this script, `HTGTS.lograt.average.allcells.twotarget.gene.v2.corrected.allinfo.txt`, is available in the <a href="https://github.com/parklab/focal-amplification/blob/main/Data">Data</a> folder.
