@@ -38,7 +38,8 @@ association.with.chromatin.features.htgts<-function(file="Data/epigenomics.data.
 
 association.with.chromatin.features<-function(file="Data/epigenomics.data.boundary.number.250kb.RData"){
   library(lasso2)
-  load(file) #load the file contains values of number of amplifon boundaries and number of binding for each factor in 250kb bins. Values in centromere and peri-centric regions were filtered out.
+  load(file) 
+  #load the file contains values of number of amplifon boundaries and number of binding for each factor in 250kb bins. Values in centromere and peri-centric regions were filtered out.
   
   #all
   #this is for all amplication boudaries  
