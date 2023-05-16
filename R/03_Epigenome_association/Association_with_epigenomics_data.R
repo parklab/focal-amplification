@@ -78,8 +78,8 @@ association.with.chromatin.features<-function(file="Data/epigenomics.data.bounda
 
 comparison.er.e2.control<-function(file="Data/epigenomics.data.breast.RData"){
   load(file)
-  t=er.intensity.1mb
-  d1=density(t[,4],na.rm=T)
+  t=er.intensity.1mb #ERa binding intensity
+  d1=density(t[,4],na.rm=T) 
   plot(d1$x,d1$y,type="l",xlim=c(0,14),lwd=2,col=rgb(0, 0, 1,0.5),xlab="ER binding intensity",ylab="Density",main="Control vs E2",axes=F)
   axis(1)
   axis(2,las=2)
