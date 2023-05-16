@@ -29,7 +29,7 @@ association.with.chromatin.features.htgts<-function(file="Data/epigenomics.data.
   d2=d[id,] #filter out bins with no epigenetic marks
 
   lm.lasso<-l1ce(ratio ~ ER.E2 + CTCF + TOP2B+ DHS + R.loop + H3K9me3 + H3K27ac + H3K4me3 + Pol2 + H3K36me3, data = d2, standardize=T, absolute.t=T, trace=T, bound=0.215)
-  #lasso regression. a penalized parameter was chosen to remove two least important factors
+  #lasso regression. regulation parameter was chosen so that two least important variables were not selected.
 
   pval=summary(lm.lasso)$coefficients[-1,4]
   pval
