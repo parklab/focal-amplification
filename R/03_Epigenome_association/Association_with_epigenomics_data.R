@@ -23,7 +23,7 @@ association.with.chromatin.features.htgts<-function(file="Data/epigenomics.data.
 
   #d: number of binding of epigenomic marks in 250 kb
   d=d[ids,] #filter out pericentric/cetromic regions
-  d$ratio=mcf[ids] #b.n: ratio of E2/control
+  d$ratio=mcf[ids] #ratio of E2/control
 
   id=which(rowSums(d[,2:11])>0)
   d2=d[id,] #filter out bins with no epigenetic marks
