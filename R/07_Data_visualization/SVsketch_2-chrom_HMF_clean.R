@@ -104,12 +104,12 @@ svsketch.hmf <- function(i, chri1, chri2, ori1, ori2, pwt, pht){
     isv$end2[isv$chrom2 == chri1] <- value1 - isv$end2[isv$chrom2 == chri1]
     isv$strand1[isv$chrom1 == chri1 & isv$strand1 == "+"] <- "negative"
     isv$strand1[isv$chrom1 == chri1 & isv$strand1 == "-"] <- "positive"
-    isv$strand2[isv$chrom2 == chri1 & isv$strand1 == "+"] <- "negative"
-    isv$strand2[isv$chrom2 == chri1 & isv$strand1 == "-"] <- "positive"
+    isv$strand2[isv$chrom2 == chri1 & isv$strand2 == "+"] <- "negative"
+    isv$strand2[isv$chrom2 == chri1 & isv$strand2 == "-"] <- "positive"
     isv$strand1[isv$chrom1 == chri1 & isv$strand1 == "positive"] <- "+"
     isv$strand1[isv$chrom1 == chri1 & isv$strand1 == "negative"] <- "-"
-    isv$strand2[isv$chrom2 == chri1 & isv$strand1 == "positive"] <- "+"
-    isv$strand2[isv$chrom2 == chri1 & isv$strand1 == "negative"] <- "-"
+    isv$strand2[isv$chrom2 == chri1 & isv$strand2 == "positive"] <- "+"
+    isv$strand2[isv$chrom2 == chri1 & isv$strand2 == "negative"] <- "-"
   }
   if (ori2 == "-"){
     isv$start1[isv$chrom1 == chri2] <- value2 - isv$start1[isv$chrom1 == chri2]
@@ -118,12 +118,12 @@ svsketch.hmf <- function(i, chri1, chri2, ori1, ori2, pwt, pht){
     isv$end2[isv$chrom2 == chri2] <- value2 - isv$end2[isv$chrom2 == chri2]
     isv$strand1[isv$chrom1 == chri2 & isv$strand1 == "+"] <- "negative"
     isv$strand1[isv$chrom1 == chri2 & isv$strand1 == "-"] <- "positive"
-    isv$strand2[isv$chrom2 == chri2 & isv$strand1 == "+"] <- "negative"
-    isv$strand2[isv$chrom2 == chri2 & isv$strand1 == "-"] <- "positive"
+    isv$strand2[isv$chrom2 == chri2 & isv$strand2 == "+"] <- "negative"
+    isv$strand2[isv$chrom2 == chri2 & isv$strand2 == "-"] <- "positive"
     isv$strand1[isv$chrom1 == chri2 & isv$strand1 == "positive"] <- "+"
     isv$strand1[isv$chrom1 == chri2 & isv$strand1 == "negative"] <- "-"
-    isv$strand2[isv$chrom2 == chri2 & isv$strand1 == "positive"] <- "+"
-    isv$strand2[isv$chrom2 == chri2 & isv$strand1 == "negative"] <- "-"
+    isv$strand2[isv$chrom2 == chri2 & isv$strand2 == "positive"] <- "+"
+    isv$strand2[isv$chrom2 == chri2 & isv$strand2 == "negative"] <- "-"
   }
   
   isv$start1[isv$chrom1 == chri2] <- isv$start1[isv$chrom1 == chri2] + delta
